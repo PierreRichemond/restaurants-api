@@ -1,2 +1,16 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1 class='mb-3 text-center'>Register a restaurant to add it the API</h1>
+<% @restaurants.each do |restaurant| %>
+  <div class="card-restaurant m-2 d-flex justify-content-between">
+    <div class="card-product-infos">
+      <h2><%= restaurant.name %></h2>
+      <p><%= restaurant.address %></p>
+      <p>id: <%= restaurant.id %></p>
+    </div>
+    <% if user_signed_in? %>
+      <div>
+        <%= link_to "Show", [current_user, restaurant] %>
+        <%= link_to "Edit", [:edit, current_user, restaurant] %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

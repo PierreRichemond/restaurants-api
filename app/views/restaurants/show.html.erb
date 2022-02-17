@@ -1,0 +1,13 @@
+<h1 class='mb-3 text-center'>Edit or delete your Restaurants from the API</h1>
+<div class="card-restaurant m-2">
+  <div class="card-restaurant-infos">
+    <h2><%= @restaurant.name %></h2>
+    <p><%= @restaurant.address %></p>
+    <p>id: <%= @restaurant.id %></p>
+  </div>
+</div>
+<% if user_signed_in? %>
+  <%= link_to 'Back', root_path, class: 'btn btn-default link'%>
+  <%= link_to "Edit", [:edit, current_user, @restaurant] %>
+  <%= link_to "Destroy", [current_user, @restaurant], method: :delete, data: { confirm: 'Are you sure?' }%>
+<% end %>
