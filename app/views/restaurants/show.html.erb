@@ -57,7 +57,7 @@
     <h2>Comments</h2>
   </header>
   <div class="col-md-10">
-    <% if @restaurant.comments.any? %>
+    <% if @comments.any? %>
 
       <div id="messages">
         <% @comments.each do |comment| %>
@@ -72,7 +72,7 @@
         <% end %>
       </div>
     <% else %>
-      There are no comments to show
+      There are no comments to show, be the first to write one!
     <% end %>
   </div>
 </div>

@@ -11,6 +11,7 @@ class RestaurantsController < ApplicationController
   end
 
   def create
+
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.user = current_user
     if @restaurant.save
@@ -23,8 +24,9 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-@comment = @restaurant.comments.build
-@comments = @restaurant.comments
+
+    @comment = @restaurant.comments.build
+    @comments = @restaurant.comments.reject{ |comment| comment.id == nil}
   end
 
   def edit
@@ -68,4 +70,5 @@ class RestaurantsController < ApplicationController
   def restaurant_params
     params.require(:restaurant).permit(:name, :address, :user_id)
   end
+
 end
