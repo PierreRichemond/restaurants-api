@@ -6,11 +6,11 @@
       <p><%= restaurant.address %></p>
       <p>id: <%= restaurant.id %></p>
     </div>
-    <% if user_signed_in? %>
-      <div>
-        <%= link_to "Show", [current_user, restaurant] %>
+    <div>
+      <%= link_to "Show", [current_user, restaurant] %>
+      <% if user_signed_in? && current_user == restaurant.user %>
         <%= link_to "Edit", [:edit, current_user, restaurant] %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 <% end %>

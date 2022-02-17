@@ -6,8 +6,34 @@
     <p>id: <%= @restaurant.id %></p>
   </div>
 </div>
-<% if user_signed_in? %>
-  <%= link_to 'Back', root_path, class: 'btn btn-default link'%>
+<%= link_to 'Back', root_path, class: 'btn btn-default link'%>
+<% if user_signed_in? && current_user == @restaurant.user %>
   <%= link_to "Edit", [:edit, current_user, @restaurant] %>
   <%= link_to "Destroy", [current_user, @restaurant], method: :delete, data: { confirm: 'Are you sure?' }%>
 <% end %>
+
+<div class="col-md-12">
+  <header>
+    <h2>Comments</h2>
+  </header>
+  <div class="col-md-10">
+    <% if @restaurant.comments.any? %>
+
+      <div id="messages">
+        <% @comments.each do |comment| %>
+          <div class="comment-body">
+            <%= comment.content %>
+          </div>
+          <div class="comment-time">
+            <%= time_ago_in_words(comment.created_at) %>
+            ago by <%= comment.user.email %>
+          </div>
+          <hr>
+        <% end %>
+      </div>
+
+    <% else %>
+      There are no comments to show
+    <% end %>
+  </div>
+</div>
