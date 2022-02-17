@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   root to: 'restaurants#index'
 
   resources :users do
-      resources :restaurants, except: [:index] do
-          resources :comments
-      end
+      resources :restaurants, except: [:index]
   end
-
+  resources :restaurants do
+    resources :comments
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   namespace :api, defaults: { format: :json } do

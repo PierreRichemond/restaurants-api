@@ -23,6 +23,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @comments = @restaurant.comments
+    @comment = @restaurant.comments.build
   end
 
   def edit
