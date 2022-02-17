@@ -1,16 +1,21 @@
 <h1 class='mb-3 text-center'>Register a restaurant to add it the API</h1>
+<div class='d-flex justify-content-around mb-2'>
+  <%= link_to 'API Access with all the restaurants', "/api/v1/restaurants/",target: '_blank', class: 'btn btn-lg btn-success link'%>
+</div>
 <% @restaurants.each do |restaurant| %>
-  <div class="card-restaurant m-2 d-flex justify-content-between">
+  <div class="card-restaurant m-2 d-flex justify-content-between p-3">
     <div class="card-product-infos">
       <h2><%= restaurant.name %></h2>
       <p><%= restaurant.address %></p>
       <p>id: <%= restaurant.id %></p>
     </div>
+
     <div>
       <%= link_to "Show", [current_user, restaurant] %>
       <% if user_signed_in? && current_user == restaurant.user %>
         <%= link_to "Edit", [:edit, current_user, restaurant] %>
       <% end %>
+      <%= link_to 'API Access', "/api/v1/restaurants/#{restaurant.id}",target: '_blank', class: 'btn btn-lg btn-success link'%>
     </div>
   </div>
 <% end %>

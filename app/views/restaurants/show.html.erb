@@ -1,9 +1,13 @@
 <h1 class='mb-3 text-center'>Edit or delete your Restaurants from the API</h1>
-<div class="card-restaurant m-2">
+
+<div class="card-restaurant m-2 d-flex justify-content-between p-3">
   <div class="card-restaurant-infos">
     <h2><%= @restaurant.name %></h2>
     <p><%= @restaurant.address %></p>
     <p>id: <%= @restaurant.id %></p>
+  </div>
+  <div>
+    <%= link_to 'API Access', "/api/v1/restaurants/#{@restaurant.id}",target: '_blank', class: 'btn btn-lg btn-success link'%>
   </div>
 </div>
 <%= link_to 'Back', root_path, class: 'btn btn-default link'%>
@@ -12,7 +16,6 @@
   <%= link_to "Destroy", [current_user, @restaurant], method: :delete, data: { confirm: 'Are you sure?' }%>
 <% end %>
 
-<hr>
 <div class="col-md-12">
   <%= form_for [@restaurant, @comment], remote: true,
       :html => {class: "form-horizontal", role: "form"} do |f| %>
