@@ -11,7 +11,8 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @restaurant = current_user.restaurants.new(restaurant_params)
+    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant.user = current_user
     if @restaurant.save
       flash[:notice] = 'Restaurant has been added to the API'
       redirect_to [current_user, @restaurant]
@@ -22,8 +23,8 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @comments = @restaurant.comments
-    @comment = @restaurant.comments.build
+@comment = @restaurant.comments.build
+@comments = @restaurant.comments
   end
 
   def edit

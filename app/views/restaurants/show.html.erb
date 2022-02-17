@@ -61,16 +61,16 @@
 
       <div id="messages">
         <% @comments.each do |comment| %>
-          <div class="comment-body">
+          <div class="comment-body d-flex justify-content-between">
             <%= comment.content %>
+
+            <% if user_signed_in? && current_user == @restaurant.user %>
+              <%= link_to "Edit", edit_restaurant_comment_path(@restaurant) %>
+            <% end %>
           </div>
-          <% if user_signed_in? && current_user == @restaurant.user %>
-            <%= link_to "Edit", edit_restaurant_comment_path(@restaurant) %>
-          <% end %>
           <hr>
         <% end %>
       </div>
-
     <% else %>
       There are no comments to show
     <% end %>
